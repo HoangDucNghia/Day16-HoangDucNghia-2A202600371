@@ -25,6 +25,7 @@ One-sentence description:
 - **Pain signal:** Nhân viên tuyển sinh kiệt sức, thời gian phản hồi email bị trễ từ 48 đến 72 giờ trong những tuần cao điểm, và sự thất vọng của học sinh dẫn đến việc bỏ dở tìm hiểu và không muốn ứng tuyển vào trường nữa.
 - **Evidence / proxy evidence:** Các văn phòng tuyển sinh thường xuyên ghi nhận hàng trăm email chưa đọc trong hộp thư chung vào những tuần quanh hạn chót nộp hồ sơ. Số lượng hồ sơ ứng tuyển vào trường thấp đáng kể hơn so với dự tính.
 - **Why underserved:** Tính năng trả lời tự động của các hệ thống CRM hiện tại quá cứng nhắc và rập khuôn. Chúng không thể hiểu bối cảnh cụ thể của từng học sinh hoặc tự động trích xuất trạng thái giấy tờ còn thiếu mà không có sự can thiệp của con người.
+
 ### Need #2
 - **Statement (JTBD):** Khi học sinh hỏi những câu hỏi phức tạp, mang tính cá nhân hóa về trạng thái hồ sơ hoặc nền tảng giáo dục riêng của họ, tôi muốn có thể ngay lập tức cung cấp cho họ câu trả lời chính xác, được cá nhân hóa mà không cần nhân viên can thiệp thủ công, để tôi có thể ngăn họ tiếp tục gửi email/gọi điện khiếu nại và giảm thiểu khối lượng lớn các yêu cầu hỗ trợ thủ công đang tồn đọng,.
 - **Current workaround:** Sử dụng các chatbot theo quy tắc tiêu chuẩn, vốn chỉ đưa ra các đường link FAQ chung chung, khiến học sinh bức xúc và bắt buộc phải gửi email trực tiếp cho phòng tuyển sinh. Sau đó, nhân viên phải tự mở CRM thủ công, tra cứu hồ sơ riêng của học sinh và tự gõ câu trả lời tùy chỉnh.
@@ -32,6 +33,12 @@ One-sentence description:
 - **Evidence / proxy evidence:** Phân tích dữ liệu từ cổng thông tin (Portal analytics) cho thấy chatbot hiện tại có tỷ lệ học sinh yêu cầu "chuyển sang nhân viên hỗ trợ" (escalate to human) hoặc tỷ lệ bỏ ngang rất cao; hộp thư chung của phòng tuyển sinh luôn tràn ngập các câu hỏi đặc thù mà các trang FAQ tiêu chuẩn không bao quát được.
 - **Why underserved:** Các chatbot và tính năng trả lời tự động trên CRM truyền thống không có khả năng kết nối động (dynamically connect) với cơ sở dữ liệu hồ sơ của học sinh để tự động tổng hợp thông tin và đưa ra một câu trả lời hiểu rõ ngữ cảnh cá nhân của ứng viên.
 
+### Need #3
+- **Statement (JTBD):** Khi học sinh đang tìm hiểu xem một trường có phù hợp với mình hay không, tôi muốn hệ thống có thể hiểu câu hỏi trong ngữ cảnh rộng hơn và dẫn dắt một cuộc hội thoại tự nhiên (hỏi – đáp – gợi ý bước tiếp theo), để tôi có thể giúp học sinh định hướng tốt hơn và tăng khả năng họ tiếp tục quan tâm, tiến tới ứng tuyển.
+- **Current workaround:** Sử dụng chatbot FAQ hoặc chatbot rule-based chỉ trả lời từng câu hỏi riêng lẻ; hoặc nhân viên tuyển sinh phải trực tiếp tư vấn 1–1 qua email/điện thoại nếu muốn giải thích sâu hơn.
+- **Pain signal:** Học sinh chỉ hỏi 1–2 câu rồi dừng tương tác; tỷ lệ quay lại thấp; nhiều học sinh không tiếp tục tìm hiểu hoặc không nộp hồ sơ dù đã từng quan tâm ban đầu.
+- **Evidence / proxy evidence:** Chatbot hiện tại chủ yếu trả lời theo dạng FAQ retrieval, không có follow-up hoặc gợi ý; dữ liệu từ portal cho thấy thời gian tương tác ngắn và không có chuỗi hội thoại dài; nhiều câu hỏi mang tính khám phá (“trường này có hợp với em không?”) không được trả lời thỏa đáng.
+- **Why underserved:** Các chatbot hiện tại tập trung vào truy xuất thông tin (FAQ retrieval) chứ không được thiết kế để hiểu mục tiêu dài hạn của người dùng hoặc dẫn dắt hội thoại; thiếu khả năng duy trì context và xây dựng conversation flow tự nhiên để hỗ trợ định hướng cho học sinh.
 ---
 ## 4. Strategy Statement
 For phòng tuyển sinh của các trường đại học tư thục mới mở từ 5 năm trở xuống, có CRM nhưng chưa tự động hóa phản hồi
@@ -40,6 +47,7 @@ our product helps them giảm backlog hàng trăm email và thời gian phản h
 through một hệ thống AI kết nối trực tiếp với CRM tuyển sinh để truy xuất trạng thái hồ sơ theo thời gian thực, sau đó dùng RAG để tổng hợp quy định tuyển sinh và generate câu trả lời cá nhân hóa
 unlike các chatbot rule-based hoặc FAQ tĩnh và hệ thống CRM truyền thống
 because we can leverage dữ liệu hồ sơ học sinh theo thời gian thực, lịch sử tương tác, và khả năng hiểu ngữ cảnh để tạo ra câu trả lời linh hoạt và cá nhân hóa.
+
 ---
 ## 5. Moat Hypothesis
 **Moat mechanism:** dataset hội thoại tuyển sinh + mapping giữa câu hỏi và trạng thái hồ sơ thực tế của học sinh, được tích lũy qua từng mùa tuyển sinh và gắn chặt với CRM nội bộ của từng trường
@@ -81,3 +89,4 @@ Open questions chúng tôi muốn khám phá thêm ở Day 17:
 1. Các trường đại học sẵn sàng chi bao nhiêu tiền mỗi năm cho hệ thống tuyển sinh thông minh này và cần đặt mức giá là bao nhiêu ?
 2. Việc giảm thời gian phản hồi có thực sự làm tăng tỷ lệ nộp hồ sơ không, hay chỉ cải thiện trải nghiệm?
 3. Hệ thống CRM của các trường hiện tại có đủ khả năng tích hợp (API, dữ liệu sạch) để triển khai solution này một cách thực tế không?
+
